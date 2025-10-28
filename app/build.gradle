@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'maven-publish'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
@@ -14,10 +14,37 @@ android {
             
         }
     }
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {
     compile 'androidx.appcompat:appcompat:1.0.0'
 	
     compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+publishing {
+  repositories {
+    maven {
+      name = "OSSRH"
+      url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+      credentials {
+        username = System.getenv("MAVEN_USERNAME")
+        password = System.getenv("MAVEN_PASSWORD")
+      }
+    }
+    maven {
+      name = "GitHubPackages"
+      url = "https://maven.pkg.github.com/onedeba7/button"
+      credentials {
+        username = System.getenv("GITHUB_ACTOR")
+        password = System.getenv("GITHUB_TOKEN")
+      }
+    }
+  }
 }
