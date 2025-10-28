@@ -107,11 +107,7 @@
         
         <!-- Alternative: For GitHub Packages -->
         
-        <repository>
-            <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/onedeba7/button</url>
-        </repository>
+     
         
     </distributionManagement>
 </project>
