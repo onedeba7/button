@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
 android {
+    namespace 'io.github.onedeba7'
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
 
@@ -11,7 +12,6 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
           
             
         }
@@ -26,22 +26,15 @@ dependencies {
 }
 
 publishing {
-  repositories {
-    maven {
-      name = "OSSRH"
-      url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-      credentials {
-        username = System.getenv("MAVEN_USERNAME")
-        password = System.getenv("MAVEN_PASSWORD")
-      }
+    publications {
+        release(MavenPublication) {
+            groupId = 'io.github.onedeba7'
+            artifactId = 'button'
+            version = '1.0.1'
+
+            afterEvaluate {
+                from components.release
+            }
+        }
     }
-    maven {
-      name = "GitHubPackages"
-      url = "https://maven.pkg.github.com/onedeba7/button"
-      credentials {
-        username = System.getenv("GITHUB_ACTOR")
-        password = System.getenv("GITHUB_TOKEN")
-      }
-    }
-  }
 }
