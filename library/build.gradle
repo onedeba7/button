@@ -1,26 +1,92 @@
-apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+    id 'signing'
+}
 
 android {
+    // Your normal Android configuration
+    namespace 'io.github.onedeba7'
+    compileSdk 29
     
-    compileSdkVersion 29
-    buildToolsVersion "29.0.0"
-
     defaultConfig {
-        minSdkVersion 21
+        minSdk 21
         targetSdkVersion 29
+        versionCode 1
+        versionName "1.0.0"
     }
+    
     buildTypes {
         release {
-          
-            
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {
+    // Your dependencies
     implementation 'androidx.appcompat:appcompat:1.0.0'
 	
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+// Maven Publication Configuration
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                
+                groupId = 'io.github.onedeba7'
+                artifactId = 'button'
+                version = '1.0.0'
+                
+                pom {
+                    name = 'Your Library Name'
+                    description = 'A fantastic Android library'
+                    url = 'https://github.com/onedeba7/button'
+                    
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    
+                    developers {
+                        developer {
+                            id = 'onedeba7'
+                            name = 'Debashis Sabar'
+                            email = 'onedeba7@gmail.com'
+                        }
+                    }
+                    
+                    scm {
+                        connection = 'scm:git:github.com/onedeba7/button.git'
+                        developerConnection = 'scm:git:ssh://github.com/onedeba7/button.git'
+                        url = 'https://github.com/onedeba7/button/tree/main'
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+            credentials {
+                username = project.findProperty('ossrhUsername') ?: ''
+                password = project.findProperty('ossrhPassword') ?: ''
+            }
+        }
+    }
+}
+signing {
+    sign publishing.publications.mavenJava
 }
