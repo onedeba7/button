@@ -1,113 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-         http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
-    <!-- Project Coordinates -->
-    <groupId>io.github.onedeba7</groupId>
-    <artifactId>button</artifactId>
-    <version>1.0.0</version>
-    <packaging>jar</packaging>
+  <activeProfiles>
+    <activeProfile>github</activeProfile>
+  </activeProfiles>
 
-    <name>My Example Library</name>
-    <description>A sample Java library published with Maven</description>
-    <url>https://github.com/onedeba7/button</url>
-
-    <!-- License Information -->
-    <licenses>
-        <license>
-            <name>MIT License</name>
-            <url>https://opensource.org/licenses/MIT</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <!-- Developer Information -->
-    <developers>
-        <developer>
-            <name>John Doe</name>
-            <email>john@example.com</email>
-            <organization>Example Inc.</organization>
-        </developer>
-    </developers>
-
-    <!-- SCM Information -->
-    <scm>
-        <connection>scm:git:git://github.com/onedeba7/button.git</connection>
-        <developerConnection>scm:git:ssh://github.com:onedeba7/button.git</developerConnection>
-        <url>https://github.com/onedeba7/button/tree/master</url>
-    </scm>
-
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
-    <dependencies>
-        <!-- Your dependencies here -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <!-- Source JAR -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.2.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- Javadoc JAR -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.4.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- GPG Signing (for Maven Central) -->
-            
-        </plugins>
-    </build>
-
-    <!-- Distribution Management -->
-    <distributionManagement>
-        <!-- For Maven Central via OSSRH -->
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
+  <profiles>
+    <profile>
+      <id>github</id>
+      <repositories>
         <repository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+          <id>central</id>
+          <url>https://repo.maven.apache.org/maven2</url>
         </repository>
-        
-        <!-- Alternative: For GitHub Packages -->
-        
-     
-        
-    </distributionManagement>
-</project>
+        <repository>
+          <id>github</id>
+          <url>https://maven.pkg.github.com/onedeba7/button</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+<distributionManagement>
+   <repository>
+     <id>github</id>
+     <name>GitHub OWNER Apache Maven Packages</name>
+     <url>https://maven.pkg.github.com/onedeba7/button</url>
+   </repository>
+</distributionManagement>
+  <servers>
+     <server>
+   <id>github</id>
+   <username>onedeba7</username>
+   <password>${env.GITHUB_TOKEN}</password>
+ </server>
+  </servers>
+</settings>

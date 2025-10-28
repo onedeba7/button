@@ -1,9 +1,9 @@
 <settings>
     <servers>
         <server>
-            <id>ossrh</id>
-            <username>8r3jVr</username>
-            <password>cF3wZLAl1fHFBthG1uH4cEnxPUu4oaGlF</password>
+            <id>github</id>
+            <username>onedeba7</username>
+            <password>${env.GITHUB_TOKEN}</password>
         </server>
     </servers>
 </settings>
