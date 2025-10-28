@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
 android {
-    namespace 'io.jitpack.onedeba7'
+    namespace 'io.jitpack.library'
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
 
@@ -28,8 +28,8 @@ dependencies {
 publishing {
     publications {
         release(MavenPublication) {
-            groupId = 'io.jitpack.onedeba7'
-            artifactId = 'button'
+            groupId = 'io.jitpack'
+            artifactId = 'library'
             version = '1.0.1'
 
             afterEvaluate {
