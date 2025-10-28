@@ -6,7 +6,7 @@ plugins {
 
 android {
     // Your normal Android configuration
-    namespace 'io.github.onedeba7'
+   // namespace 'io.github.onedeba7'
     compileSdk 30
     
     defaultConfig {
