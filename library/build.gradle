@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
 android {
-    namespace 'io.github.onedeba7'
+    namespace io.github.onedeba7
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
 
