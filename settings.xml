@@ -5,5 +5,10 @@
             <username>onedeba7</username>
             <password>${env.GITHUB_TOKEN}</password>
         </server>
+            <server>
+            <id>ossrh</id>
+            <username>onedeba7</username>
+            <password>Ds@king12345</password>
+        </server>
     </servers>
 </settings>
