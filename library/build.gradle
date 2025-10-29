@@ -27,49 +27,49 @@ dependencies {
 afterEvaluate {
     publishing {
         publications {
-            create<MavenPublication>("release") {
-                from(components["release"])
+            release(MavenPublication) {
+                from components.release
                 
-                groupId = "com.github.onedeba7"
-                artifactId = "button"
-                version = "1.0.0"
+                groupId = 'com.github.onedeba7'
+                artifactId = 'button'
+                version = '1.0.1'
                 
                 pom {
-                    name.set("Your Android Library")
-                    description.set("A description of your Android library")
-                    url.set("https://github.com/onedeba7/your-repo")
+                    name = 'Your Library Name'
+                    description = 'A description of your library'
+                    url = 'https://github.com/onedeba7/button'
                     
                     licenses {
                         license {
-                            name.set("The Apache License, Version 2.0")
-                            url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
                         }
                     }
                     
                     developers {
                         developer {
-                            id.set("onedeba7")
-                            name.set("Your Name")
-                            email.set("your.email@example.com")
+                            id = 'onedeba7'
+                            name = 'Your Name'
+                            email = 'your.email@example.com'
                         }
                     }
                     
                     scm {
-                        connection.set("scm:git:github.com/onedeba7/button.git")
-                        developerConnection.set("scm:git:ssh://github.com/onedeba7/button.git")
-                        url.set("https://github.com/onedeba7/button")
+                        connection = 'scm:git:github.com/onedeba7/button.git'
+                        developerConnection = 'scm:git:ssh://github.com/onedeba7/button.git'
+                        url = 'https://github.com/onedeba7/button'
                     }
                 }
             }
         }
         
         repositories {
-               maven {
-               name = "OSSRH"
-               url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-           credentials {
-               username = System.getenv("MAVEN_USERNAME")
-               password = System.getenv("MAVEN_PASSWORD")
+    maven {
+      name = "OSSRH"
+      url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+      credentials {
+        username = System.getenv("MAVEN_USERNAME")
+        password = System.getenv("MAVEN_PASSWORD")
       }
     }
     maven {
@@ -81,5 +81,5 @@ afterEvaluate {
       }
     }
   }
- }
+    }
 }
