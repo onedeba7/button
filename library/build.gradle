@@ -32,7 +32,7 @@ afterEvaluate {
                 
                 groupId = 'com.github.onedeba7'
                 artifactId = 'button'
-                version = '1.0.1'
+                version = '1.0.2'
                 
                 
                 pom {
@@ -65,6 +65,7 @@ afterEvaluate {
         }
         
         repositories {
+        /*
     maven {
       name = "OSSRH"
       url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
@@ -73,6 +74,7 @@ afterEvaluate {
         password = System.getenv("MAVEN_PASSWORD")
       }
     }
+    */
     maven {
       name = "GitHubPackages"
       url = "https://maven.pkg.github.com/onedeba7/button"
