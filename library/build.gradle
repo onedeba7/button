@@ -19,61 +19,28 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    compile 'androidx.appcompat:appcompat:1.0.0'
 	
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
-                
-                groupId = 'com.github.onedeba7'
-                artifactId = 'button'
-                version = '1.0.1'
-                
-                
-                pom {
-                    name = 'Material Button'
-                    description = 'A description of your library'
-                    url = 'https://github.com/onedeba7/button'
-                    
-                    licenses {
-                        license {
-                            name = 'The Apache License, Version 2.0'
-                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                        }
-                    }
-                    
-                    developers {
-                        developer {
-                            id = 'onedeba7'
-                            name = 'Debashis Sabar'
-                            email = 'onedeba7@gmail.com'
-                        }
-                    }
-                    
-                    scm {
-                        connection = 'scm:git:github.com/onedeba7/button.git'
-                        developerConnection = 'scm:git:ssh://github.com/onedeba7/button.git'
-                        url = 'https://github.com/onedeba7/button'
-                    }
-                }
-            }
-        }
-        
-        repositories {
+publishing {
+  repositories {
     maven {
       name = "OSSRH"
-      url = "https://s01.oss.sonatype.org/service/local/"
+      url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
       credentials {
-        username = System.getenv("OSSRH_USERNAME")
-        password = System.getenv("OSSRH_PASSWORD")
+        username = System.getenv("MAVEN_USERNAME")
+        password = System.getenv("MAVEN_PASSWORD")
       }
     }
-    
-  }
+    maven {
+      name = "GitHubPackages"
+      url = "https://maven.pkg.github.com/onedeba7/button"
+      credentials {
+        username = System.getenv("GITHUB_ACTOR")
+        password = System.getenv("GITHUB_TOKEN")
+      }
     }
+  }
 }
