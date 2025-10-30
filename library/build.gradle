@@ -35,7 +35,7 @@ afterEvaluate {
                 version = '1.0.1'
                 
                 pom {
-                    name = 'Your Library Name'
+                    name = 'Material Button'
                     description = 'A description of your library'
                     url = 'https://github.com/onedeba7/button'
                     
@@ -49,8 +49,8 @@ afterEvaluate {
                     developers {
                         developer {
                             id = 'onedeba7'
-                            name = 'Your Name'
-                            email = 'your.email@example.com'
+                            name = 'Debashis Sabar'
+                            email = 'onedeba7@gmail.com'
                         }
                     }
                     
@@ -81,5 +81,5 @@ afterEvaluate {
       }
     }
   }
- }
+    }
 }
