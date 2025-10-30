@@ -76,8 +76,8 @@ afterEvaluate {
       name = "GitHubPackages"
       url = "https://maven.pkg.github.com/onedeba7/button"
       credentials {
-        username = System.getenv("GITHUB_ACTOR")
-        password = System.getenv("GITHUB_TOKEN")
+        username = System.getenv("GITHUB_U")
+        password = System.getenv("GITHUB_T")
       }
     }
   }
