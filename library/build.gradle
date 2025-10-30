@@ -34,8 +34,6 @@ afterEvaluate {
                 artifactId = 'button'
                 version = '1.0.1'
                 
-                artifact androidSourcesJar
-                artifact androidJavadocJar
                 
                 pom {
                     name = 'Material Button'
