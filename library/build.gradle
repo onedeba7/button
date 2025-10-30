@@ -73,14 +73,7 @@ afterEvaluate {
         password = System.getenv("OSSRH_PASSWORD")
       }
     }
-    maven {
-      name = "GitHubPackages"
-      url = "https://maven.pkg.github.com/onedeba7/button"
-      credentials {
-        username = System.getenv("GITHUB_ACTOR")
-        password = System.getenv("GIT_TOKEN")
-      }
-    }
+    
   }
     }
 }
