@@ -56,31 +56,7 @@ afterEvaluate {
                 groupId = 'io.github.onedeba7' // e.g., 'com.example.library'
                 artifactId = 'button' // e.g., 'awesome-library'
                 version = '1.0.0-SNAPSHOT' // This can be pulled from a property/version file
-				pom {
-                    name = artifactId
-                    description = 'A brief description of your library.'
-                    url = 'https://github.com/onedeba7/button'
-                    
-                    licenses {
-                        // Example: Apache 2.0
-                        license {
-                            name = 'The Apache Software License, Version 2.0'
-                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                        }
-                    }
-                    developers {
-                        developer {
-                            id = 'onedeba7'
-                            name = 'Debashis Sabar'
-                            email = 'onedeba7@gmail.com'
-                        }
-                    }
-                    scm {
-                        connection = 'scm:git:github.com/onedeba7/button.git'
-                        developerConnection = 'scm:git:github.com/onedeba7/button.git'
-                        url = 'https://github.com/onedeba7/button'
-                    }
-				}
+				
             }
         }
         repositories {
@@ -106,5 +82,3 @@ afterEvaluate {
     }
 	
 }
-
-// 
