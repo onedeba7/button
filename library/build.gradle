@@ -85,9 +85,9 @@ afterEvaluate {
 	signing {
     useInMemoryPgpKeys(
         providers.environmentVariable("GPG_KEY").get(),
-        providers.environmentVariable("SIGNING_PASSWORD").get()
+        providers.environmentVariable("GPG_PASSPHRASE").get()
     )
-    sign publishing.publications
+    sign publishing.publications.release
 	}
 	
 }
