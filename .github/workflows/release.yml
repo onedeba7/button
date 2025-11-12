@@ -1,17 +1,13 @@
 name: Publish Android Library to GPR
 
 on:
-  # This triggers the workflow when a new tag is pushed (e.g., git tag v1.0.0 and git push --tags)
   push:
     tags:
-      - '*' # Run on tags starting with 'v'
+      - '*'
 
 jobs:
   publish:
-    # Use the latest Ubuntu runner
     runs-on: ubuntu-latest
-    
-    # Give the workflow permission to write to packages
     permissions:
       packages: write
       contents: write
@@ -19,9 +15,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          # Fetch full history for proper tagging
-          fetch-depth: 0
 
       - name: Set up JDK 11
         uses: actions/setup-java@v4
@@ -30,50 +23,34 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
-      # Import GPG key for signing
-      #- name: Import GPG key
-        #uses: crazy-max/ghaction-import-gpg@v6
-        #with:
-          # The GPG private key (base64 encoded)
-          #gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          # Passphrase for the GPG key (if any)
-          #passphrase: ${{ secrets.GPG_PASSPHRASE }}
-          # Git user details for signing
-         # git_user_signingkey: true
-          #git_commit_gpgsign: true
-         # git_tag_gpgsign: true
-          #git_push_gpgsign: true
+      # Simple GPG setup without external action
+      - name: Setup GPG
+        run: |
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" | base64 -d > private.key
+          gpg --batch --import private.key
+          rm private.key
+        shell: bash
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # Build and assemble the release AAR
       - name: Assemble Release AAR
-        # Replace :your-library-module-name with the actual name (e.g., :mylibrary)
         run: ./gradlew assembleRelease
 
-      # Publish with GPG signing
       - name: Publish to GitHub Package Registry 🚀
         run: ./gradlew publishReleasePublicationToGitHubPackagesRepository
         env:
-          # GPR_USER is used in the Gradle config for the username
-          GPR_USER: ${{ github.actor }} 
-          # GPR_KEY is used in the Gradle config for the password/token
+          GPR_USER: ${{ github.actor }}
           GPR_KEY: ${{ secrets.GITHUB_TOKEN }}
-          # GPG signing configuration
-          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          # Pass the raw base64 key directly to Gradle
+          SIGNING_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          SIGNING_PASSWORD: ${{ secrets.GPG_PASSPHRASE }}
 
-      # Optional: Create a GitHub Release for the tag
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          # Name the release after the tag (e.g., v1.0.0)
           name: Release ${{ github.ref_name }}
-          # The tag name itself
           tag_name: ${{ github.ref }}
-          # Mark as a draft to review before final publishing
           draft: true
-          # Note: The GITHUB_TOKEN has permission to create a release
           token: ${{ secrets.GITHUB_TOKEN }}
