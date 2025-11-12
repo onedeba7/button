@@ -61,8 +61,8 @@ jobs:
           # GPR_KEY is used in the Gradle config for the password/token
           GPR_KEY: ${{ secrets.GITHUB_TOKEN }}
           # GPG signing configuration
-          SIGNING_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-          SIGNING_PASSWORD: ${{ secrets.GPG_PASSPHRASE }}
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
       # Optional: Create a GitHub Release for the tag
       - name: Create GitHub Release
