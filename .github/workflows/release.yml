@@ -57,5 +57,7 @@ jobs:
           draft: true
           # Note: The GITHUB_TOKEN has permission to create a release
           token: ${{ secrets.GITHUB_TOKEN }}
-
+          GPG_KEY: ${{ secrets.GPG_KEY }}
+          GPG_ID: ${{ secrets.GPG_ID }}
+          GPG_PW: ${{ secrets.GPG_PW }}
           
