@@ -76,18 +76,11 @@ afterEvaluate {
     }
 
 
-    /*
+    
     signing {
         sign publishing.publications.release
     }
 	
-*/
-	signing {
-    useInMemoryPgpKeys(
-        providers.environmentVariable("GPG_KEY").get(),
-        providers.environmentVariable("GPG_PASSPHRASE").get()
-    )
-    sign publishing.publications.release
-	}
+
 	
 }
