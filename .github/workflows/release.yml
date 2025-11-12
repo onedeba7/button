@@ -34,8 +34,8 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Assemble Release AAR
-        run: ./gradlew assembleRelease
+     # - name: Assemble Release AAR
+       # run: ./gradlew assembleRelease
 
       - name: Publish to GitHub Package Registry 🚀
         run: ./gradlew publishReleasePublicationToGitHubPackagesRepository
