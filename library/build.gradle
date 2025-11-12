@@ -82,5 +82,12 @@ afterEvaluate {
     }
 	
 */
+	signing {
+    useInMemoryPgpKeys(
+        providers.environmentVariable("GPG_KEY").get(),
+        providers.environmentVariable("SIGNING_PASSWORD").get()
+    )
+    sign publishing.publications
+	}
 	
 }
