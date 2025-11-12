@@ -3,7 +3,8 @@
 
 [![Android CI](https://github.com/onedeba7/button/actions/workflows/android.yml/badge.svg)](https://github.com/onedeba7/button/actions/workflows/android.yml)
 
-[![JitPack](https://img.shields.io/badge/JitPack-1.0.0-brightgreen.svg?style=for-the-badge)](https://jitpack.io/#debacodex/matebutton)        
+[![JitPack](https://img.shields.io/badge/JitPack-1.0.0-brightgreen.svg?style=for-the-badge)](https://jitpack.io/#io.github.onedeba7/button)        
+
 
 [![Blogger](https://img.shields.io/badge/Blogger-FF5722?style=for-the-badge&logo=blogger&logoColor=white)](https://debacodes.blogspot.com)   
 
