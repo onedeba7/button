@@ -55,7 +55,7 @@ afterEvaluate {
                 // Define your coordinates (what developers will use to import)
                 groupId = 'com.github.onedeba7' // e.g., 'com.example.library'
                 artifactId = 'button' // e.g., 'awesome-library'
-                version = '1.0.0-SNAPSHOT' // This can be pulled from a property/version file
+                version = '1.0.0' // This can be pulled from a property/version file
 				
             }
         }
